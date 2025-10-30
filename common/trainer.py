@@ -10,7 +10,7 @@ from common.util import clip_grads
 class Trainer:
     def __init__(self, model, optimizer):
         self.model = model
-        self.optimizer = optimizer  # optimizer 객체가 직접 전달됨
+        self.optimizer = optimizer
         self.loss_list = []
         self.eval_interval = None
         self.current_epoch = 0
@@ -41,7 +41,7 @@ class Trainer:
                 params, grads = remove_duplicate(model.params, model.grads)  # 공유된 가중치를 하나로 모음
                 if max_grad is not None:
                     clip_grads(grads, max_grad)
-                optimizer.update(params, grads)  # optimizer 객체가 직접 update 처리
+                optimizer.update(params, grads)
                 total_loss += loss
                 loss_count += 1
 
@@ -112,7 +112,7 @@ class RnnlmTrainer:
                 params, grads = remove_duplicate(model.params, model.grads)  # 공유된 가중치를 하나로 모음
                 if max_grad is not None:
                     clip_grads(grads, max_grad)
-                optimizer.update(params, grads)  # optimizer 객체가 직접 update 처리
+                optimizer.update(params, grads)
                 total_loss += loss
                 loss_count += 1
 
